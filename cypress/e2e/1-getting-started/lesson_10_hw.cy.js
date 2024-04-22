@@ -6,6 +6,9 @@ const homePage = new HomePage();
 const editProfilePage = new EditProfilePage();
 const basePage = new BasePage();
 let randomEmail;
+const signUpName = 'Name';
+const signUpLastName = 'LastName';
+const signUpPassword = 'Redirect_123';
 
 describe('My First Test', () => {
     it('Visit site and fill out registration form', () => {
@@ -15,29 +18,29 @@ describe('My First Test', () => {
         
         randomEmail = generateRandomEmail();
     
-        homePage.singUpName().type('Name').should('have.value', 'Name');
-        homePage.singUpLastName().type('LastName').should('have.value', 'LastName');
+        homePage.singUpName().type(signUpName).should('have.value', signUpName);
+        homePage.singUpLastName().type(signUpLastName).should('have.value', signUpLastName);
         homePage.singUpemail().type(randomEmail).should('have.value', randomEmail); 
-        homePage.singUpPassword().type('Redirect_123').should('have.value', 'Redirect_123');
-        homePage.singUpRepeatPassword().type('Redirect_123').should('have.value', 'Redirect_123');
+        homePage.singUpPassword().type(signUpPassword).should('have.value', signUpPassword);
+        homePage.singUpRepeatPassword().type(signUpPassword).should('have.value', signUpPassword);
     
         homePage.singUpRegisterButton().click({ force: true });
         
-        cy.wait(1000); 
-
+        // Wait for profile drop-down to be visible
+        basePage.profileDropDown().should('be.visible');
+        
         basePage.profileDropDown().click();
         basePage.profileButton4().click();
-        editProfilePage.profileName().should('contain', 'Name').should('contain', 'LastName');
+        editProfilePage.profileName().should('contain', signUpName).should('contain', signUpLastName);
         basePage.profileDropDown().click();
         basePage.logOutButton().click();
         
         homePage.singInButton().click(); 
         homePage.singInEmail().type(randomEmail); 
-        homePage.singInPassword().type('Redirect_123'); 
+        homePage.singInPassword().type(signUpPassword); 
         homePage.singInLoginButton().click();
     
         basePage.profileDropDown().should('exist');
-       
     });
 });
 
