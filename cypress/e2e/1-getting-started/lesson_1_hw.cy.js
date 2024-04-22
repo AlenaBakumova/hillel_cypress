@@ -1,41 +1,74 @@
- 
+import { HomePage } from '../../../pages/HomePage';
+import { EditProfilePage } from '../../../pages/EditProfilePage';
+import { BasePage } from '../../../pages/BasePage';
+
 describe('My First Test', () => {
+    const homePage = new HomePage();
+    const basePage = new BasePage();
+    const editProfilePage = new EditProfilePage();
+
+
     it('Visit site and fill out registration form', () => {
-      cy.visit('https://guest:welcome2qauto@qauto2.forstudy.space/');
-      
-      cy.get('.hero-descriptor_btn.btn.btn-primary').should('exist').click();
-  
-      const randomEmail = generateRandomEmail();
-  
-   
-      cy.get('input#signupName').type('Name').should('have.value', 'Name');
-      cy.get('input#signupLastName').type('LastName').should('have.value', 'LastName');
-      cy.get('input#signupEmail').type(randomEmail).should('have.value', randomEmail); 
-      cy.get('input#signupPassword').type('Redirect_123').should('have.value', 'Redirect_123');
-      cy.get('input#signupRepeatPassword').type('Redirect_123').should('have.value', 'Redirect_123');
-  
-   
-      cy.get('.modal-footer button.btn.btn-primary').click();
-  
-      
-      cy.get('#userNavDropdown').click();
-      cy.get('.btn.btn-link.text-danger.btn-sidebar.sidebar_btn').click(); 
-      cy.get('.btn.btn-outline-white.header_signin').click(); 
-      cy.get('input#signinEmail').type(randomEmail); 
-      cy.get('input#signinPassword').type('Redirect_123'); 
-      cy.get('.modal-footer button.btn.btn-primary').click();
-  
-      cy.get('#userNavDropdown').should('exist');
+        cy.visit('https://guest:welcome2qauto@qauto2.forstudy.space/');
+        
+        /* homePage.singUpButton().should('exist').click();
+        cy.log('Clicked on Sign Up button');
+
+        const randomEmail = generateRandomEmail();
+    
+        homePage.singUpName().type('Name').should('have.value', 'Name');
+        homePage.singUpLastName().type('LastName').should('have.value', 'LastName');
+        homePage.singUpemail().type(randomEmail).should('have.value', randomEmail); 
+        homePage.singUpPassword().type('Redirect_123').should('have.value', 'Redirect_123');
+        homePage.singUpRepeatPassword().type('Redirect_123').should('have.value', 'Redirect_123');
+    
+        homePage.singUpRegisterButton().click({ force: true });
+        
+        cy.wait(1000); 
+
+        mainPage.profileDropDown().click();
+        mainPage.profileButton().click();
+        mainPage.profileName().should('contain', 'Name').should('contain', 'undefined');
+        mainPage.profileDropDown().click();
+        mainPage.logOutButton().click();
+        */
+        homePage.singInButton().click(); 
+        homePage.singInEmail().type('alena@gmail.com'); 
+        homePage.singInPassword().type('Redirect_123'); 
+        homePage.singInLoginButton().click();
+        basePage.headerLogo().should('exist');
+        basePage.headerTab1().should('exist');
+        basePage.headerTab2().should('exist');
+        basePage.headerTab3().should('exist');
+        basePage.profileDropDown().should('exist')
+        
+    
+        //mainPage.profileDropDown().should('exist');
+       
     });
-  });
-  
-  function generateRandomEmail() {
+});
+/*
+function generateRandomEmail() {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
     let email = '';
     for (let i = 0; i < 10; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      email += characters.charAt(randomIndex);
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        email += characters.charAt(randomIndex);
     }
     email += '@example.com';
     return email;
-  }
+    */
+//}
+        /*
+        editProfilePage.editProfileButton().click();
+        cy.wait(2000); 
+        editProfilePage.nameField().invoke('val').then((nameFieldValue) => {
+            expect(nameFieldValue).to.equal('Name');
+        });
+        editProfilePage.lastNameField().invoke('val').then((lastNameFieldValue) => {
+            expect(lastNameFieldValue).to.equal('undefined');
+        });
+        editProfilePage.closeModalWindowButton().click();
+       editProfilePage.profileButton().click();
+        */
+       //цей код викинула так як з незрозумілих мені причин, в модалкі через раз відображаеться ім'я та призвіще
