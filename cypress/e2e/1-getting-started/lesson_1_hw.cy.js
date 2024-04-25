@@ -11,7 +11,7 @@ describe('My First Test', () => {
     it('Visit site and fill out registration form', () => {
         cy.visit('https://guest:welcome2qauto@qauto2.forstudy.space/');
         
-        /* homePage.singUpButton().should('exist').click();
+        homePage.singUpButton().should('exist').click();
         cy.log('Clicked on Sign Up button');
 
         const randomEmail = generateRandomEmail();
@@ -26,12 +26,14 @@ describe('My First Test', () => {
         
         cy.wait(1000); 
 
-        mainPage.profileDropDown().click();
-        mainPage.profileButton().click();
-        mainPage.profileName().should('contain', 'Name').should('contain', 'undefined');
-        mainPage.profileDropDown().click();
-        mainPage.logOutButton().click();
-        */
+        basePage.profileDropDown().click();
+        basePage.profileButton().click();
+        ditProfilePage.profileName().should('contain', 'Name').should('contain', 'undefined');
+        basePage.profileDropDown().click();
+        basePage.logOutButton().click();
+
+
+       /*
         homePage.singInButton().click(); 
         homePage.singInEmail().type('alena@gmail.com'); 
         homePage.singInPassword().type('Redirect_123'); 
@@ -41,13 +43,13 @@ describe('My First Test', () => {
         basePage.headerTab2().should('exist');
         basePage.headerTab3().should('exist');
         basePage.profileDropDown().should('exist')
-        
+        */
     
-        //mainPage.profileDropDown().should('exist');
+        basePage.profileDropDown().click();
        
     });
 });
-/*
+
 function generateRandomEmail() {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
     let email = '';
@@ -57,8 +59,8 @@ function generateRandomEmail() {
     }
     email += '@example.com';
     return email;
-    */
-//}
+    
+}
         /*
         editProfilePage.editProfileButton().click();
         cy.wait(2000); 
