@@ -30,20 +30,7 @@ describe('My First Test', () => {
         basePage.profileButton().click();
         ditProfilePage.profileName().should('contain', 'Name').should('contain', 'undefined');
         basePage.profileDropDown().click();
-        basePage.logOutButton().click();
-
-
-       /*
-        homePage.singInButton().click(); 
-        homePage.singInEmail().type('alena@gmail.com'); 
-        homePage.singInPassword().type('Redirect_123'); 
-        homePage.singInLoginButton().click();
-        basePage.headerLogo().should('exist');
-        basePage.headerTab1().should('exist');
-        basePage.headerTab2().should('exist');
-        basePage.headerTab3().should('exist');
-        basePage.profileDropDown().should('exist')
-        */
+        basePage.logOutButton().click()
     
         basePage.profileDropDown().click();
        
