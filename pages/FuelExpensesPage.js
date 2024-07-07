@@ -1,8 +1,8 @@
 import { BasePage } from './BasePage';
 
 export class FuelExpensesPage extends BasePage {
-    AddButton(){
-        return cy.xpath(`//div[@class="delimiter"]//button[@class="btn btn-primary"]`)
+    addAnExpenseButton(){
+        return cy.xpath(`//button[@class="btn btn-primary"]`)
     }
     carSelectDropdown(){
         return cy.xpath(`//button[@id="carSelectDropdown"]`)
@@ -28,13 +28,13 @@ export class FuelExpensesPage extends BasePage {
     mileageFieldAddAnExpense(){
         return cy.xpath(`//input[@id="addExpenseMileage"]`)
     }
-    mileageFieldAddAnExpense(){
-        return cy.xpath(`//input[@id="addExpenseMileage"]`)
+    mileageAddAnExpense(){
+        return cy.xpath(`//input[@class="form-control ng-untouched ng-pristine ng-valid"]`)
     }
-    numberOfLiters(){
+    numberOfLitersField(){
         return cy.xpath(`//input[@id="addExpenseLiters"]`)
     }
-    totalCostLiters(){
+    totalCostField(){
         return cy.xpath(`//input[@id="addExpenseTotalCost"]`)
     }
     modalFooterAddAnExpense(){
@@ -46,4 +46,14 @@ export class FuelExpensesPage extends BasePage {
     cancelButtonAddAnExpenser(){
         return cy.xpath(`//div[@class="modal-footer d-flex justify-content-end"]//button[@class="btn btn-secondary"]`)
     }
+    fulelExpenceDate(){
+        return cy.xpath(`//td[@class="font-weight-bold"]`)
+    }
+    fulelExpenceDelete(){
+        return cy.xpath(`//span[@class="icon icon-delete"]`)
+    }
+    fulelExpenceRemoveModal(){
+        return cy.xpath(`//button[@class="btn btn-danger"]`)
+    }
+
 }

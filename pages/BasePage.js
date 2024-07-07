@@ -7,7 +7,7 @@ export class BasePage {
         return cy.xpath(`//a[@href="/panel/garage"]`)
     }
     headerTab2(){
-        return cy.xpath(`//a[@href="/panel/expenses"]`)
+        return cy.xpath(`//a[@routerlink="expenses" and contains(@class, 'btn') and contains(@class, 'sidebar_btn')]`)
     }
     headerTab3(){
         return cy.xpath(`//a[@href="/panel/instructions"]`)
