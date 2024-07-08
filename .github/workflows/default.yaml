@@ -1,0 +1,36 @@
+name: Run Cypress tests inside Docker
+
+on:
+  push:
+    branches:
+      - default
+  pull_request:
+    branches:
+      - default
+  schedule:
+    - cron: '*/5 * * * *' # Запуск каждые 5 минут
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests inside Docker
+        uses: cypress-io/github-action@v2
+        with:
+          build: true
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          browser: chrome
+          config-file: cypress.json # Убедитесь, что указываете правильный файл конфигурации
