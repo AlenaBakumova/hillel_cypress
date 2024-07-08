@@ -1,30 +1,24 @@
-# Використовуємо передостанню версію cypress/included
-FROM cypress/included:13.12.0
+# Используем последнюю версию cypress/included
+FROM cypress/included:latest
 
-# Install Firefox
+# Устанавливаем Chrome
 RUN apt-get update && \
-    apt-get install -y firefox-esr
+    apt-get install -y chromium
 
-
-# Set the working directory
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-
-# Copy package.json and package-lock.json
+# Копируем package.json и package-lock.json
 COPY package*.json ./
 
-
-# Install dependencies
+# Устанавливаем зависимости
 RUN npm install
 
-
-# Copy the rest of the application code
+# Копируем остальной код приложения
 COPY . .
 
-
-# Verify Cypress and Firefox installation
+# Проверяем установку Cypress и Chrome
 RUN npx cypress verify
 
-
-# Command to run tests
-CMD ["npx", "cypress", "run", "--browser", "firefox"]
+# Команда для запуска тестов в браузере Chrome
+CMD ["npx", "cypress", "run", "--browser", "chrome"]
