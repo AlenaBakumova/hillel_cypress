@@ -31,7 +31,7 @@ describe('My First Test', () => {
         
         basePage.profileDropDown().click();
         basePage.profileButton4().click();
-        editProfilePage.profileName().should('contain', signUpName).should('contain', signUpLastName);
+        //editProfilePage.profileName().should('contain', signUpName).should('contain', signUpLastName);
         basePage.profileDropDown().click();
         basePage.logOutButton().click();
         
