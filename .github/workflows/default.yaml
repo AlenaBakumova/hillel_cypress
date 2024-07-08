@@ -33,4 +33,4 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:3000'
           browser: chrome
-          config-file: cypress.json # Убедитесь, что указываете правильный файл конфигурации
+          config-file: cypress.config.js
