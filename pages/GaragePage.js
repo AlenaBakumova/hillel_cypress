@@ -2,8 +2,9 @@ import { BasePage } from './BasePage';
 
 export class GaragePage extends BasePage {
    
-    AddCarButton(){
-        return cy.xpath(`//div[@class="panel-page_heading d-flex justify-content-between"]//button[@class='btn btn-primary"]`)
+    addCarButton(){
+        return cy.xpath(`//div[@class="panel-page_heading d-flex justify-content-between"]//button[text()="Add car"]
+        `)
     }
     modalHeaderAddCar(){
         return cy.xpath(`//div[@class="modal-header"]`)
@@ -18,19 +19,19 @@ export class GaragePage extends BasePage {
         return cy.xpath(`//select[@id="addCarModel"]`)
     }
     mileageField(){
-        return cy.xpath(`//select[@id="addCarMileage"]`)
+        return cy.xpath(`//input[@id="addCarMileage"]`)
     }
     modalFooterAddCar(){
         return cy.xpath(`//div[@class="modal-footer d-flex justify-content-end"]`)
     }
-    addButtonAddCar(){
+    addButtonAddNewCar(){
         return cy.xpath(`//div[@class="modal-footer d-flex justify-content-end"]//button[@class="btn btn-primary"]`)
     }
     cancelButtonAddCar(){
         return cy.xpath(`//div[@class="modal-footer d-flex justify-content-end"]//button[@class="btn btn-secondary"]`)
     }
-    editButtonAddCar(){
-        return cy.xpath(`//span[@class="icon icon-edit"]`)
+    editCarButton(){
+        return cy.xpath(`//button[@class="car_edit btn btn-edit"]//span[@class="icon icon-edit"]`)
     }
     editModalHeaderAddCar(){
         return cy.xpath(`//div[@class="modal-header"]`)
@@ -51,7 +52,7 @@ export class GaragePage extends BasePage {
         return cy.xpath(`//div[@class="modal-footer d-flex justify-content-end"]`)
     }
     removeCarButton(){
-        return cy.xpath(`//div[@class="modal-footer d-flex justify-content-end"]//button[@class="btn btn-outline-danger"]`)
+        return cy.xpath(`//button[@class="btn btn-outline-danger"]`)
     }
     editCancelCarButton(){
         return cy.xpath(`//div[@class="modal-footer d-flex justify-content-end"]//button[@class="btn btn-secondary"]`)
@@ -77,4 +78,11 @@ export class GaragePage extends BasePage {
     updateMileageButton(){
         return cy.xpath(`//button[@class="update-mileage-form_submit btn btn-secondary btn-sm"]`)
     }
+    carName(){
+        return cy.xpath(`//p[@class="car_name h2"]`)
+    }
+    removeCarModal(){
+        return cy.xpath(`//button[@class="btn btn-danger"]`)
+    }
+
 }
