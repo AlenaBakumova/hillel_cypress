@@ -12,16 +12,16 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+      image: cypress/browsers:node-20.14.0-chrome-126.0.6478.114-1-ff-127.0.1-edge-126.0.2592.61-1
       options: --user 1001
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Оновлено до v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3  # Оновлено до v3
         with:
-          node-version: '16'
+          node-version: '20'  # Використовуємо останню версію Node.js
 
       - name: Install dependencies
         run: npm install
@@ -34,15 +34,13 @@ jobs:
             echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title></head><body><div id="root"></div></body></html>' > public/index.html
           fi
 
-      - name: Install react-scripts
-        run: npm install react-scripts
-
       - name: Run Cypress tests inside Docker
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5  # Оновлено до v5
         with:
           build: true
           start: npm start
           wait-on: 'http://localhost:3000'
           browser: chrome
           config-file: cypress.config.js
+
 
