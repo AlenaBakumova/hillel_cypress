@@ -16,12 +16,12 @@ jobs:
       options: --user 1001
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Оновлено до v3
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Оновлено до v3
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Використовуємо останню версію Node.js
+          node-version: '20'
 
       - name: Remove existing node_modules and package-lock.json
         run: |
@@ -30,9 +30,6 @@ jobs:
 
       - name: Install dependencies and update lock file
         run: npm install
-
-      - name: Install dependencies using npm ci
-        run: npm ci
 
       - name: Ensure public/index.html exists
         run: |
@@ -43,10 +40,11 @@ jobs:
           fi
 
       - name: Run Cypress tests inside Docker
-        uses: cypress-io/github-action@v5  # Оновлено до v5
+        uses: cypress-io/github-action@v5
         with:
           build: true
           start: npm start
           wait-on: 'http://localhost:3000'
           browser: chrome
           config-file: cypress.config.js
+
