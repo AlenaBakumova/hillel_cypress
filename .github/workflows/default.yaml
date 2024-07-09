@@ -23,10 +23,15 @@ jobs:
         with:
           node-version: '20'  # Використовуємо останню версію Node.js
 
-      - name: Ensure package-lock.json is in sync
+      - name: Remove existing node_modules and package-lock.json
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
+      - name: Install dependencies and update lock file
         run: npm install
 
-      - name: Install dependencies
+      - name: Install dependencies using npm ci
         run: npm ci
 
       - name: Ensure public/index.html exists
