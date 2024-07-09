@@ -1,0 +1,54 @@
+name: Run Cypress tests inside Docker
+
+on:
+  push:
+    branches:
+      - default
+  pull_request:
+    branches:
+      - default
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node-20.14.0-chrome-126.0.6478.114-1-ff-127.0.1-edge-126.0.2592.61-1
+      options: --user 1001
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Remove existing node_modules and package-lock.json
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
+      - name: Install dependencies and update lock file
+        run: npm install
+
+      - name: Create public/index.html if it doesn't exist
+        run: |
+          if [ ! -f public/index.html ]; then
+            echo "public/index.html does not exist. Creating..."
+            mkdir -p public
+            echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title></head><body><div id="root"></div></body></html>' > public/index.html
+          fi
+
+      - name: Run npm ci
+        run: npm ci
+
+      - name: Run Cypress tests inside Docker
+        uses: cypress-io/github-action@v5
+        with:
+          build: true
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          browser: chrome
+          config-file: cypress.config.js
+
+
