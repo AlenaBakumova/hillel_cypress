@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install react-scripts
+        run: npm install react-scripts
+
       - name: Run Cypress tests inside Docker
         uses: cypress-io/github-action@v2
         with:
@@ -34,4 +37,3 @@ jobs:
           wait-on: 'http://localhost:3000'
           browser: chrome
           config-file: cypress.config.js
-
