@@ -23,8 +23,11 @@ jobs:
         with:
           node-version: '20'  # Використовуємо останню версію Node.js
 
-      - name: Install dependencies
+      - name: Ensure package-lock.json is in sync
         run: npm install
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Ensure public/index.html exists
         run: |
@@ -42,5 +45,3 @@ jobs:
           wait-on: 'http://localhost:3000'
           browser: chrome
           config-file: cypress.config.js
-
-
