@@ -31,13 +31,16 @@ jobs:
       - name: Install dependencies and update lock file
         run: npm install
 
-      - name: Ensure public/index.html exists
+      - name: Create public/index.html if it doesn't exist
         run: |
           if [ ! -f public/index.html ]; then
             echo "public/index.html does not exist. Creating..."
             mkdir -p public
             echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title></head><body><div id="root"></div></body></html>' > public/index.html
           fi
+
+      - name: Run npm ci
+        run: npm ci
 
       - name: Run Cypress tests inside Docker
         uses: cypress-io/github-action@v5
@@ -47,4 +50,5 @@ jobs:
           wait-on: 'http://localhost:3000'
           browser: chrome
           config-file: cypress.config.js
+
 
