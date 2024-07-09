@@ -26,6 +26,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Ensure public/index.html exists
+        run: |
+          if [ ! -f public/index.html ]; then
+            echo "public/index.html does not exist. Creating..."
+            mkdir -p public
+            echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title></head><body><div id="root"></div></body></html>' > public/index.html
+          fi
+
       - name: Install react-scripts
         run: npm install react-scripts
 
@@ -37,3 +45,4 @@ jobs:
           wait-on: 'http://localhost:3000'
           browser: chrome
           config-file: cypress.config.js
+
